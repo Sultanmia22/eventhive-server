@@ -16,3 +16,8 @@ export interface IUser {
   created_at: Date;
   updated_at: Date;
 }
+
+export interface ILoginUserPayload {
+  email: string,
+  password: string
+}
