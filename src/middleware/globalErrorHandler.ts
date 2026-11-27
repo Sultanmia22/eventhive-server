@@ -14,8 +14,12 @@ export const globalErrorHandler = ((err: AppError, req: Request, res: Response, 
     message = "Invalid data provided";
   }
 
+  console.log(message)
+
   res.status(statusCode).json({
     success: false,
     error: message,
   });
+
+  
 });

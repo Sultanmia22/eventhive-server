@@ -1,6 +1,8 @@
 import express, { type Express, type Request, type Response } from 'express';
 import cors from "cors"
 import { initDB } from './db';
+import { globalErrorHandler } from './middleware/globalErrorHandler';
+import { authRoute } from './modules/auth/auth.routes';
 const app: Express = express();
 
 // Middleware
@@ -20,9 +22,16 @@ app.use(express.urlencoded())
 initDB()
 
 
+// Feature routes 
+app.use('/api/v1/auth',authRoute)
+
+
 // Root API end point
 app.get('/', (req: Request, res: Response) => {
   res.send('EventHive Server is Running...');
 });
+
+// Global error 
+app.use(globalErrorHandler)
 
 export default app
